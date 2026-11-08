@@ -1,0 +1,1658 @@
+version: 2.1
+
+jobs:
+  ckpt724:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Ragdolls culled and verified
+          command: |
+            mkdir -p /tmp/pre1
+            set +o pipefail 2>/dev/null; head -c 831256 /dev/urandom > /tmp/pre1/138.125; true
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '138.125'
+  shippit:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/138.125 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  mx48-qa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Our turn to link the cookbook
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; awk -F : 'length($1) > 4 {print $1}' /etc/passwd | head -8 | wc -l; true ; } > /tmp/pre1/agent-8960
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'agent-8960'
+  apr25-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  calender:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Fortissimo promotion
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; ls -S /|cat -n; true ; } > /tmp/pre1/7007-Router.wave
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '7007-Router.wave'
+  node18-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/7007-Router.wave 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  soft_rank_escape:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Advance to the sidecar
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; declare -a label=(otter shark cat); declare -p label; true ; } > /tmp/pre1/9783.echo.MVC
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '9783.echo.MVC'
+  dan-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  fail_edge_prepare_internal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: archiveGlossaryJob
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; label='pay the rent' && echo "[${label~~}]"; true ; } > /tmp/pre1/craneWallet
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'craneWallet'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/craneWallet 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  LANG_CA:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Ask Research To Flag Receivables
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; echo "no errors found" | sed y/zse/6MC/; true ; } > /tmp/pre1/lynx-parser-cluster-crisp
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'lynx-parser-cluster-crisp'
+  bug-3666:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/ba7dfc31-2d76-fc7a-15fd-bee7fdcb3e 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  pull_curry_max_idle_kiln:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: I own accessibility audit spot check
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; which grep &> /dev/null || echo "grep missing"; true ; } > /tmp/pre1/RMA-22994-HN
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'RMA-22994-HN'
+  Ship_Service9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  symbolsMap:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: I usually rewrite the postmortem last
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; command -v pwd; true ; } > /tmp/pre1/5cdd2b2be1c308f023acc9f8efe9
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '5cdd2b2be1c308f023acc9f8efe9'
+  QA_STAGE_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  Gold460:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Renew Intrusion Rules
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; mkdir -p ${TMPDIR:-/tmp}/carddiary && touch ${TMPDIR:-/tmp}/carddiary/file{1..6}.log && ls ${TMPDIR:-/tmp}/carddiary; true ; } > /tmp/pre1/8102451f3e895319e0d7d22243d7e75e1d0
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '8102451f3e895319e0d7d22243d7e75e1d0'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  aud311:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Seek the dependencies
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; echo -n 'OK' | sum; true ; } > /tmp/pre1/ba7dfc31-2d76-fc7a-15fd-bee7fdcb3e
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'ba7dfc31-2d76-fc7a-15fd-bee7fdcb3e'
+  andromeda-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/ba7dfc31-2d76-fc7a-15fd-bee7fdcb3e 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  finishLinkVM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Go tag the readme
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; type gzip &> /dev/null && echo "have gzip" || echo "no gzip"; true ; } > /tmp/pre1/6zQiK01q0d4ndq
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '6zQiK01q0d4ndq'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/6zQiK01q0d4ndq 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  TIMEOUT_PATH:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: nvm unload the customs forms
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; shell="running low on memory" && echo "${shell^}"; true ; } > /tmp/pre1/CSVTensor
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'CSVTensor'
+  promote:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  neo-chunk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: ok go
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; grep -i --with-filename -v local /etc/hosts | wc -l; true ; } > /tmp/pre1/05.07.2019
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '05.07.2019'
+  validte-62:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  Nj4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Update the benefits enrollment
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; ps -ef | sort -k 3 -rn | wc -l; true ; } > /tmp/pre1/mem0-m4trix
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'mem0-m4trix'
+  run-full-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/ba7dfc31-2d76-fc7a-15fd-bee7fdcb3e 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  start6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: First Pass Health Endpoint Reroute
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; cp /etc/shells /tmp/Omega.txt && sed -i.bak '/^#/d' /tmp/Omega.txt && wc -l /tmp/Omega.txt; true ; } > /tmp/pre1/loader_driver_hollow
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'loader_driver_hollow'
+  polaris-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/loader_driver_hollow 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  sys_PaymentTimerTimestamp:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Revoking the API keys one sec
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; ps axo pid,ppid,stat,comm | sort -k3 -r -n | tail -n +2 | sort -k3 -n -r; true ; } > /tmp/pre1/dusty.bronze.thicket
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'dusty.bronze.thicket'
+  rigel-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/dusty.bronze.thicket 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  lightFlag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: validate mutation score
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; cat < /etc/hostname > /tmp/LimitOffer.conf && cat /tmp/LimitOffer.conf; true ; } > /tmp/pre1/crc_f96d1a94c1f1249
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'crc_f96d1a94c1f1249'
+  ga-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/crc_f96d1a94c1f1249 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  path-2014-w26:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Notify the shift roster for leavers
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; grep -Fv fi ~/.bashrc | nl; true ; } > /tmp/pre1/v9.4.26
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'v9.4.26'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/ba7dfc31-2d76-fc7a-15fd-bee7fdcb3e 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  motorArr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Resume the drift monitor no grad
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; awk 'NF' /etc/hosts | grep -v '^#' | awk 'NF'; true ; } > /tmp/pre1/zlDT
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'zlDT'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/zlDT 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  WIDE_CANVAS_12:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Shift the mailing list back to prod
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; printf 'host=cache-a\nport=4068\nuser=tom\ndebug=false\n' > ${TMPDIR:-/tmp}/chunk.tsv && (. ${TMPDIR:-/tmp}/chunk.tsv && echo "$host:$port"); true ; } > /tmp/pre1/v7.13.36
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'v7.13.36'
+  q4-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  qsn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Really merge the old backups
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -name "*rc" -size +1k -ls 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/pre1/bb17e02
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'bb17e02'
+  dotnet8-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  File2014:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Retrain Adapter Weights SUP1240
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; tar cf "/tmp/ap7.tar" -C /etc hosts && tar -rf "/tmp/ap7.tar" -C /etc shells && tar -tf "/tmp/ap7.tar"; true ; } > /tmp/pre1/tmp-d12345f
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'tmp-d12345f'
+  do-the-thing:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/tmp-d12345f 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  ConvertFrom-ReceiptObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: LINE 20 rebuild
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; ls -a /usr/sbin | awk '{print length, $0}' | sort -n | tail -3; true ; } > /tmp/pre1/TOKEN
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'TOKEN'
+  teh-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  sphere_chess_notify_font:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: The FX rates are waiting
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; command -v echo; true ; } > /tmp/pre1/lib_src_fx
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'lib_src_fx'
+  perseus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  blog-email-text:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Probe the latency budget for good measure
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; printenv|sort|grep -i user|awk -F "=" '{print $1}'; true ; } > /tmp/pre1/ahwbinm6z7x2h
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'ahwbinm6z7x2h'
+  py311-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/ahwbinm6z7x2h 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  is-dim:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Stage forklift lane 5
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; seq 100 | awk '{s+=$1} END {print s/NR}'; true ; } > /tmp/pre1/uADPLYIJeqdzvv2lk
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'uADPLYIJeqdzvv2lk'
+  APP-175:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  USB2Message:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Import The Shaders Low Res
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; cat /etc/nsswitch.conf | awk '{print NF}' | tac; true ; } > /tmp/pre1/jTLy3HtVzSNnkD3jP1
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'jTLy3HtVzSNnkD3jP1'
+  HOOK_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/agent-8960 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  sqrt-19:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Playtest Leaderboard
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; tar -cvzf '/tmp/lizard.tar.gz' -C /etc profile; true ; } > /tmp/pre1/4426c5d
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '4426c5d'
+  hyperion:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/lib_src_fx 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  uriRaiseStruct:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: query audit log early
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; echo "that's all folks" > /tmp/back.log && cp /tmp/back.log "/tmp/timesheet.bak" && diff /tmp/back.log "/tmp/timesheet.bak" && echo identical; true ; } > /tmp/pre1/trial_764
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'trial_764'
+  hyperion-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/trial_764 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+  Uiopnm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: LOAD firewall rules
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; find /tmp -maxdepth 2 -name 'tmp*' -group root -exec stat -c %F '{}' \; 2>/dev/null | wc -l; true ; } > /tmp/pre1/250.255.95
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '250.255.95'
+  delta-5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Validate
+          command: |
+            awk 'END{print NR,"lines"}' /tmp/pre1/250.255.95 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 1 --quiet --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore artifacts
+          command: zcat assets.tgz | tar xvf -
+      - run:
+          name: Post-build check
+          command: sleep 30
+      - run:
+          name: Stabilize
+          command: env | wc -l
+      - run:
+          command: exec ./exec
+
+  lowerHotMotorClampGlobeBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: pkg7 tests
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; printf %s "done" | sha512sum | awk '{print $1}'; true ; } > /tmp/pre1/250.255.95
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '250.255.95'
+  secBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Weigh water bath and wait
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; printf '%s' 'let'\''s go!' | od -An -c; true ; } > /tmp/pre1/crc_f96d1a94c1f1249
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'crc_f96d1a94c1f1249'
+  libmotor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: indexing status update as we go
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f 2>/dev/null|grep 'release'|head -n8; true ; } > /tmp/pre1/loader_driver_hollow
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'loader_driver_hollow'
+  L_get:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Solo quarantine
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; for c in horse crow goose tiger whale cat; do echo -n "$c "; done; echo; true ; } > /tmp/pre1/craneWallet
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'craneWallet'
+  COMMIT_TEMPLATE_ORIG:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Bucketing so nothing is lost
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; echo -n "error: none" | xargs; true ; } > /tmp/pre1/6zQiK01q0d4ndq
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '6zQiK01q0d4ndq'
+  Unlock-OptionInfo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Texture lighting for the nightly run
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; compgen -b | grep -x test; true ; } > /tmp/pre1/7007-Router.wave
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '7007-Router.wave'
+  orbit-normal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: The readme versioned nightly
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; if test -d /etc/skel; then echo exists; fi; true ; } > /tmp/pre1/dusty.bronze.thicket
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'dusty.bronze.thicket'
+  iterate-reader-temp:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Shift the feature store from local disk to prod
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; head -n 8 /etc/login.defs | tac; true ; } > /tmp/pre1/tmp-d12345f
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'tmp-d12345f'
+  block13:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Cache the learning rate and log metrics
+          command: |
+            mkdir -p /tmp/pre1
+            set +o pipefail 2>/dev/null; head -c 831256 /dev/urandom > /tmp/pre1/138.125; true
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - '138.125'
+  l3n:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Fast track scroll
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; grep -i -o "sync" /etc/passwd | nl; true ; } > /tmp/pre1/ahwbinm6z7x2h
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'ahwbinm6z7x2h'
+  Sugar686:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre1
+      - run:
+          name: Countdown 5 backup
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; printf 'tea\t73\ntodo\t48\nhome\t66\nrank\t15\n' >/tmp/plum_team.tsv && awk -F'\t' '{print $2}' /tmp/plum_team.tsv; true ; } > /tmp/pre1/trial_764
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'trial_764'
+  HAS_FLAG:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: relocate the temp files ASAP
+          command: |
+            mkdir -p /tmp/pre1
+            { set +o pipefail 2>/dev/null; jobs; wait; echo "no jobs left"; true ; } > /tmp/pre1/zlDT
+            echo "wrote (α)"
+      - persist_to_workspace:
+          root: /tmp/pre1
+          paths:
+            - 'zlDT'
+workflows:
+  all:
+    jobs:
+      - mx48-qa
+      - qsn
+      - Gold460
+      - apr25-canary:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - dotnet8-fmt:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - publish:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - q4-smoke:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - promote:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - HOOK_PROD:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - Ship_Service9:
+          requires:
+            - mx48-qa
+            - qsn
+            - Gold460
+      - sphere_chess_notify_font
+      - ConvertFrom-ReceiptObject
+      - soft_rank_escape
+      - perseus:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - teh-ci:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - dan-test:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - validte-62:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - APP-175:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - QA_STAGE_8:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - hyperion:
+          requires:
+            - sphere_chess_notify_font
+            - ConvertFrom-ReceiptObject
+            - soft_rank_escape
+      - aud311
+      - LANG_CA
+      - path-2014-w26
+      - andromeda-v2:
+          requires:
+            - aud311
+            - LANG_CA
+            - path-2014-w26
+      - bug-3666:
+          requires:
+            - aud311
+            - LANG_CA
+            - path-2014-w26
+      - sanity:
+          requires:
+            - aud311
+            - LANG_CA
+            - path-2014-w26
+      - run-full-artifact-bundle:
+          requires:
+            - aud311
+            - LANG_CA
+            - path-2014-w26
+      - Uiopnm
+      - lowerHotMotorClampGlobeBlock:
+          requires:
+            - Uiopnm
+      - delta-5:
+          requires:
+            - lowerHotMotorClampGlobeBlock
+      - lightFlag:
+          requires:
+            - lowerHotMotorClampGlobeBlock
+      - secBlock:
+          requires:
+            - lightFlag
+      - ga-v2:
+          requires:
+            - secBlock
+      - start6:
+          requires:
+            - secBlock
+      - libmotor:
+          requires:
+            - start6
+      - polaris-plus:
+          requires:
+            - libmotor
+      - fail_edge_prepare_internal:
+          requires:
+            - libmotor
+      - L_get:
+          requires:
+            - fail_edge_prepare_internal
+      - send-it:
+          requires:
+            - L_get
+      - finishLinkVM:
+          requires:
+            - L_get
+      - COMMIT_TEMPLATE_ORIG:
+          requires:
+            - finishLinkVM
+      - gating:
+          requires:
+            - COMMIT_TEMPLATE_ORIG
+      - calender:
+          requires:
+            - COMMIT_TEMPLATE_ORIG
+      - Unlock-OptionInfo:
+          requires:
+            - calender
+      - node18-release:
+          requires:
+            - Unlock-OptionInfo
+      - sys_PaymentTimerTimestamp:
+          requires:
+            - Unlock-OptionInfo
+      - orbit-normal:
+          requires:
+            - sys_PaymentTimerTimestamp
+      - rigel-alpha:
+          requires:
+            - orbit-normal
+      - File2014:
+          requires:
+            - orbit-normal
+      - iterate-reader-temp:
+          requires:
+            - File2014
+      - do-the-thing:
+          requires:
+            - iterate-reader-temp
+      - ckpt724
+      - block13:
+          requires:
+            - ckpt724
+      - shippit:
+          requires:
+            - block13
+      - blog-email-text:
+          requires:
+            - block13
+      - l3n:
+          requires:
+            - blog-email-text
+      - py311-test:
+          requires:
+            - l3n
+      - uriRaiseStruct:
+          requires:
+            - l3n
+      - Sugar686:
+          requires:
+            - uriRaiseStruct
+      - hyperion-plus:
+          requires:
+            - Sugar686
+      - motorArr:
+          requires:
+            - Sugar686
+      - HAS_FLAG:
+          requires:
+            - motorArr
+      - canary:
+          requires:
+            - HAS_FLAG
